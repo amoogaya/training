@@ -1,0 +1,21 @@
+{% load static i18n %}
+
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+
+</head>
+
+{% block navbar %}
+{% include "train/navigation.html" %}
+{% endblock %}
+
+{% block content %}
+{% block content-main %}
+{% endblock %}
+{% endblock %}
+
+</html>
+

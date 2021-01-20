@@ -15,7 +15,7 @@ class RegisterRequestState(models.Model):
         ('pending_leader_review', _('Pending Leader Review')),
     )
 
-    RegisterRequest = models.ForeignKey(RegisterRequest, on_delete=models.CASCADE)
+    register_request = models.ForeignKey(RegisterRequest, on_delete=models.CASCADE)
 
     flag = models.CharField(max_length=200, choices=STATUS)
 
@@ -106,3 +106,21 @@ class RegisterRequestApproved(RegisterRequestState):
         proxy = True
 
 
+class RegisterRequestLog(models.Model):
+    STATUS = (
+        ('approved', _('Approved')),
+        ('rejected_by_employee', _('Rejected by Employee')),
+        ('rejected', _('Rejected')),
+        ('pending_employee_review', _('Pending Employee Review')),
+        ('pending_leader_review', _('Pending Leader Review')),
+    )
+
+    register_request = models.ForeignKey(RegisterRequest, on_delete=models.CASCADE)
+
+    flag = models.CharField(max_length=200, choices=STATUS)
+
+    note = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('Register request Log')
+        verbose_name_plural = _('Register requests Log')

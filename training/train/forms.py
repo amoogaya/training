@@ -1,10 +1,10 @@
-from django import forms
-from .models import RegisterRequestPendingEmployeeReview
+from django.forms import ModelForm
+from .models import RegisterRequest
 
 
-class RequestRegisterForm(forms.ModelForm):
-
-    model = RegisterRequestPendingEmployeeReview
-    exclude = [ 'status' ]
+class RequestRegisterForm(ModelForm):
+    class Meta:
+        model = RegisterRequest
+        exclude = ['status']
 
 

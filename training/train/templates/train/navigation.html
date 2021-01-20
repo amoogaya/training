@@ -1,0 +1,45 @@
+{% load static i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Training</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div id="topbar">
+
+        <div class="navbar">
+
+             <div class="navbar-content">
+
+                <div class="navbar-nav mr-auto">
+
+                     <a class="navbar" href="">
+                         <b>Training</b></a>
+
+                     <a class="navbar" href="{% url 'train:add_request' %}">
+                         add Request </a>
+
+                     <a class="navbar" href="{% url 'account:login' %}">
+                        Login </a>
+
+                     <a class="navbar" href="{% url 'account:signup' %}">
+                         Signup </a>
+
+                     <a class="navbar" href=" {% url 'account:logout' %}">
+                         Logout </a>
+
+                    <br>
+                </div>
+
+             </div>
+
+        </div>
+
+      </div>
+
+    </div>
+</nav>

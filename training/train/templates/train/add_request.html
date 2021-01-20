@@ -1,0 +1,13 @@
+{% extends "train/base.html" %}
+
+{% block content %}
+
+    <h4> add your request </h4>
+
+    <form action="{% url 'train:add_request' %}" method="post" >
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="add_request">
+    </form>
+
+{% endblock %}
