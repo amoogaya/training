@@ -45,7 +45,7 @@ class RegisterRequestPendingLeaderReviewAdmin(admin.ModelAdmin):
             n = send_email_to_user(request,
                                    'register request is approved',
                                    'congratulations your register request is approved',
-                                   ['aya.goomaa@gmail.com']
+                                   [obj.register_request.email, ],
                                    )
             obj.register_request.status = 'approved'
         # [obj.register_request.email, ]
