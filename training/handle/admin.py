@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .views import send_email_to_user
 from .models import (RegisterRequestPendingEmployeeReview,
                      RegisterRequestRejectedBYEmployee,
                      RegisterRequestPendingLeaderReview,
@@ -36,20 +37,34 @@ class RegisterRequestPendingLeaderReviewAdmin(admin.ModelAdmin):
 
     def approved(self, request, queryset):
         for obj in queryset:
-
             RegisterRequestLog.objects.create(
                 register_request_id=obj.id,
                 flag='approved',
             )
+            print(obj.register_request.email)
+            n = send_email_to_user(request,
+                                   'register request is approved',
+                                   'congratulations your register request is approved',
+                                   ['aya.goomaa@gmail.com']
+                                   )
+            obj.register_request.status = 'approved'
+        # [obj.register_request.email, ]
         queryset.update(flag='approved')
 
     def rejected(self, request, queryset):
         for obj in queryset:
-
             RegisterRequestLog.objects.create(
                 register_request_id=obj.id,
                 flag='rejected',
             )
+
+            n = send_email_to_user(request,
+                                   'register request is rejected',
+                                   'we are sorry your register request is rejected , for these reasones ',
+                                   [obj.register_request.email, ],
+                                   )
+            obj.register_request.status = 'approved'
+
         queryset.update(flag='rejected')
 
     approved.short_description = 'approved the request'
@@ -58,7 +73,6 @@ class RegisterRequestPendingLeaderReviewAdmin(admin.ModelAdmin):
 
 admin.site.register(RegisterRequestPendingEmployeeReview,
                     RegisterRequestPendingEmployeeReviewAdmin)
-
 
 admin.site.register(RegisterRequestPendingLeaderReview,
                     RegisterRequestPendingLeaderReviewAdmin)
